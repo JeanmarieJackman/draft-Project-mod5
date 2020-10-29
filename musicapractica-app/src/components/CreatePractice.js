@@ -9,7 +9,8 @@ class CreatePractice extends React.Component {
         instrument: "",
         subject: "",
         goal: "",
-        reflection: ""
+        reflection: "",
+        user_id: 60
     }
 
 
@@ -25,7 +26,8 @@ class CreatePractice extends React.Component {
             instrument: this.state.instrument,
             subject: this.state.subject,
             goal: this.state.goal,
-            reflection: this.state.reflection
+            reflection: this.state.reflection,
+            user_id: this.state.user_id
         })
     })
         .then(resp => resp.json())
@@ -38,7 +40,8 @@ class CreatePractice extends React.Component {
             instrument: "",
             subject: "",
             goal: "",
-            reflection: []
+            reflection: "",
+            user_id: [this.state.user_id + 1]
             })
         })
         .catch(console.log)
@@ -49,12 +52,11 @@ class CreatePractice extends React.Component {
     }
 
     render() {
-    console.log(this.state.logs)
+    // console.log(this.state.logs)
     return (
         <>
-        <h3>Log a Practice Session</h3>
         <form className="new-practice-log-form" onSubmit={this.submitHandler}>
-        <input placeholder="Date" type="text" name="date" value={this.state.date} onChange={this.changeHandler} />
+        <h3>Log a Practice Session</h3><input placeholder="Date" type="text" name="date" value={this.state.date} onChange={this.changeHandler} />
         <input placeholder="Duration" type="integer" name="duration" value={this.state.duration} onChange={this.changeHandler} />
         <input placeholder="Instrument" type="text" name="instrument" value={this.state.instrument} onChange={this.changeHandler} />
         <input placeholder="Piece, Etude, or Scales practiced" type="text" name="subject" value={this.state.subject} onChange={this.changeHandler} />

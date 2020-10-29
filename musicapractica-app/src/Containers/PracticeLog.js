@@ -1,32 +1,31 @@
 import React from 'react';
 import Calendar from '../Components/Calendar';
 import CreatePractice from '../Components/CreatePractice';
+import PracticeLogEntry from '../Components/PracticeLogEntry';
 
 class PracticeLog extends React.Component {
 
-    // state = {
-    //     recipes: []
-    //     }
+    state = {
+        logs: []
+        }
     
         componentDidMount() {
-        fetch('http://localhost:3000/api/v1/recipes')
+        fetch('http://localhost:3001/logs')
             .then(resp => resp.json())
-            .then(recipes => this.setState({ recipes: recipes }))
+            .then(logs => this.setState({ logs: logs }))
             .catch(console.log)
         }
         render() {
-        // console.log(this.state.recipes)
+        console.log(this.state.logs)
         return (
             <>
             {/* <div>
                 <Search />
             </div> */}
             <div className='container'>
-                <Calendar />
-                <CreatePractice />
-                {/* <Sidebar recipes={this.state.recipes} />
-                <Content recipes={this.state.recipes} /> */}
-    
+                <Calendar logs={this.state.logs} />
+                <CreatePractice logs={this.state.logs} />
+                <PracticeLogEntry logs={this.state.logs} />  
             </div>
             </>
         )
