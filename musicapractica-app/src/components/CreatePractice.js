@@ -13,21 +13,21 @@ class CreatePractice extends React.Component {
     }
 
 
-        submitHandler = (e) => {
+    submitHandler = (e) => {
         e.preventDefault()
         // this.props.submitHandler(this.state)
-        fetch('http://localhost:3000/api/v1/logs', {
+        fetch('http://localhost:3001/logs', {
             method: 'POST',
             headers: {'content-type':'application/json'},
             body: JSON.stringify({
-            title: this.state.date,
-            image: this.state.duration,
-            summary: this.state.instrument,
-            readyInMinutes: this.state.subject,
-            servings: this.state.goal,
-            ingredients: this.state.reflection
-            })
+            date: this.state.date,
+            duration: this.state.duration,
+            instrument: this.state.instrument,
+            subject: this.state.subject,
+            goal: this.state.goal,
+            reflection: this.state.reflection
         })
+    })
         .then(resp => resp.json())
         .then(newLog => {
             let newArray = [...this.state.logs, newLog]
@@ -49,10 +49,10 @@ class CreatePractice extends React.Component {
     }
 
     render() {
-    console.log(this.state.ingredients)
+    console.log(this.state.logs)
     return (
         <>
-        <h3>Create a Recipe</h3>
+        <h3>Log a Practice Session</h3>
         <form className="new-practice-log-form" onSubmit={this.submitHandler}>
         <input placeholder="Date" type="text" name="date" value={this.state.date} onChange={this.changeHandler} />
         <input placeholder="Duration" type="integer" name="duration" value={this.state.duration} onChange={this.changeHandler} />
